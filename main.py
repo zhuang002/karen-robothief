@@ -5,6 +5,10 @@ cameras = []
 
 def get_next(pos, offset_row, offset_col):
     new_pos = [pos[0] + offset_row, pos[1] + offset_col]
+    if steps[new_pos[0]][new_pos[1]] != -1:
+        return None
+
+    steps[new_pos[0]][new_pos[1]] = -3
 
     if graph[new_pos[0]][new_pos[1]] == 'W':
         return None
@@ -17,8 +21,6 @@ def get_next(pos, offset_row, offset_col):
     if graph[new_pos[0]][new_pos[1]] == 'R':
         return get_next(new_pos, 0, 1)
 
-    if steps[new_pos[0]][new_pos[1]] != -1:
-        return None
     return new_pos
 
 
